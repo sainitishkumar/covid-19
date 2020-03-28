@@ -26,36 +26,25 @@
 		<br>
 		<div id="locationPicker" style="width: auto; height: 300px;"></div>
     </div>
-    <div class="container">
-		<br>
-		<div class="row">
-			<div class="col-md-3">
-				<input type="text" class="form-control" id="address" placeholder="Address">
-			</div>
-			<div class="col-md-3">
-				<input type="text" class="form-control" id="latitude" placeholder="Latitude">
-			</div>
-			<div class="col-md-3">
-				<input type="text" class="form-control" id="longitude" placeholder="Longitude">
-			</div>
-			<div class="col-md-3">
-				<input type="number" class="form-control" id="radius" placeholder="Radius">
-			</div>
-		</div>
-		<br>
-		<div id="locationPicker" style="width: auto; height: 300px;"></div>
-	</div>
+    <!-- <button id="add_button" onclick="temporary()">add location</button> -->
 </body>
 </html>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="http://cdnjs.buttflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
-<script src="http://k4r573n.github.io/leaflet-control-osm-geocoder/Control.OSMGeocoder.js"></script>
 <script src="osm.js"></script>
 <script>
+    function temporary(){
+        OSMPICKER.initmappicker(1.2957827966373185, 103.84964909458154, 3, {
+			addressId: "address",
+			latitudeId: "latitude",
+			longitudeId: "longitude",
+			radiusId: "radius"
+		});
+    }
 	$(document).ready(function(){
-		OSMPICKER.initmappicker(1.2957827966373185, 103.84964909458154, 300, {
+		OSMPICKER.initmappicker(1.2957827966373185, 103.84964909458154, 3, {
 			addressId: "address",
 			latitudeId: "latitude",
 			longitudeId: "longitude",

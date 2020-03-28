@@ -12,8 +12,8 @@ var OSMPICKER = (function(){
 		}
 		var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 		var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-		var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 20, attribution: osmAttrib});		
-		map.setView([lat, lon],10);
+		var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 40});		
+        map.setView([lat, lon],10);
 		map.addLayer(osm);
 		if(!marker){
 			marker = new L.marker([lat, lon], {draggable:'true'});
@@ -58,20 +58,18 @@ var OSMPICKER = (function(){
 		});
 
 		function newLocation(item){
-			$("#"+option.latitudeId).val(item.lat);
-			$("#"+option.longitudeId).val(item.lon);
-			marker.setLatLng([item.lat, item.lon]);
-			circle.setLatLng([item.lat, item.lon]);
-			map.setView([item.lat, item.lon]);
+            if(item!=undefined){
+                $("#"+option.latitudeId).val(item.lat);
+                $("#"+option.longitudeId).val(item.lon);
+                markerloc = new L.LatLng(item.lat, item.lon);
+                marker = new L.marker(markerloc, {draggable:'true'});
+                marker.setLatLng([item.lat, item.lon]);
+                circle.setLatLng([item.lat, item.lon]);
+                map.setView([item.lat, item.lon]);
+                map.addLayer(marker);
+                map.addLayer(circle);
+            }
 		}
-		/*
-		var osmGeocoder = new L.Control.OSMGeocoder({
-			collapsed: false,
-			position: 'bottomright',
-			text: 'Find!',
-		});
-		map.addControl(osmGeocoder);
-		*/
 	};
 
 	function searchLocation(text, callback){
