@@ -57,13 +57,14 @@ var OSMPICKER = (function(){
 			var item = searchLocation($(this).val(), newLocation);
 		});
 
-		function newLocation(item){
+		function newLocation(item, text){
             if(item!=undefined){
                 $("#"+option.latitudeId).val(item.lat);
                 $("#"+option.longitudeId).val(item.lon);
                 markerloc = new L.LatLng(item.lat, item.lon);
                 marker = new L.marker(markerloc, {draggable:'true'});
                 marker.setLatLng([item.lat, item.lon]);
+                marker.bindPopup(text);
                 circle.setLatLng([item.lat, item.lon]);
                 map.setView([item.lat, item.lon]);
                 map.addLayer(marker);
@@ -84,7 +85,7 @@ var OSMPICKER = (function(){
 			success : function(data) {
 				console.log(data);
 				var item = data[0];
-				callback(item);
+				callback(item, text);
 			}
 		});
 	};
