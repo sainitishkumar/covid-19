@@ -81,12 +81,18 @@ var OSMPICKER = (function(){
 			dataType : 'json',
 			error : function(err) {
 				console.log(err);
-			},
+                window.alert("Incorrect Location");
+            },
 			success : function(data) {
-				console.log(data);
-				var item = data[0];
-				callback(item, text);
-			}
+                console.log(data);
+                if(data.length == 0){
+                    window.alert("Incorrect Location");
+                }
+                else{
+                    var item = data[0];
+                    callback(item, text);
+                }
+            }
 		});
 	};
 	
