@@ -1,3 +1,18 @@
+// var firebaseConfig = {
+//     apiKey: "AIzaSyDxwnbz3KLGwJ_IUYtZj7ROigTGJynielQ",
+//     authDomain: "sain-covid-19.firebaseapp.com",
+//     databaseURL: "https://sain-covid-19.firebaseio.com",
+//     projectId: "sain-covid-19",
+//     storageBucket: "sain-covid-19.appspot.com",
+//     messagingSenderId: "404509151056",
+//     appId: "1:404509151056:web:a3e8dc94334ca50efb6655",
+//     measurementId: "G-0Y255H054N"
+// };
+// // Initialize Firebase
+// firebase.initializeApp(firebaseConfig);
+// firebase.analytics();
+console.log("Done");
+
 var OSMPICKER = (function(){
 	var app = {};
 	
@@ -126,6 +141,13 @@ var OSMPICKER = (function(){
             // $("#table_id").append(table_text);
         }
     }
+
+    $("#submit_button").on('click', submitFunc);
+    function submitFunc(){
+        // console.log("SENT", firebase);
+        // var ref = firebase.database().ref();
+        // ref('locations').set({'test':1});
+    };
 
 	function searchLocation(text, callback){
 		var requestUrl = "http://nominatim.openstreetmap.org/search?format=json&q="+text;
