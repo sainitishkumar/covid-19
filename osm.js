@@ -69,9 +69,18 @@ var OSMPICKER = (function(){
                 map.setView([item.lat, item.lon]);
                 map.addLayer(marker);
                 map.addLayer(circle);
+                table_text = "<tr>";
+                table_text += "<td>"+text+"</td>";
+                table_text += "<td>" + '<button>Delete</button>' + "</td></tr>";
+                $("#table_id").append(table_text);
             }
 		}
 	};
+    
+    $("#table_id").on('click', 'button', onClickDelete);
+    function onClickDelete() {
+    $(this).parents('tr').remove();
+    }
 
 	function searchLocation(text, callback){
 		var requestUrl = "http://nominatim.openstreetmap.org/search?format=json&q="+text;
