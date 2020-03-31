@@ -1,15 +1,15 @@
-// var firebaseConfig = {
-//     apiKey: "AIzaSyDxwnbz3KLGwJ_IUYtZj7ROigTGJynielQ",
-//     authDomain: "sain-covid-19.firebaseapp.com",
-//     databaseURL: "https://sain-covid-19.firebaseio.com",
-//     projectId: "sain-covid-19",
-//     storageBucket: "sain-covid-19.appspot.com",
-//     messagingSenderId: "404509151056",
-//     appId: "1:404509151056:web:a3e8dc94334ca50efb6655",
-//     measurementId: "G-0Y255H054N"
-// };
-// // Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
+var firebaseConfig = {
+    apiKey: "AIzaSyDxwnbz3KLGwJ_IUYtZj7ROigTGJynielQ",
+    authDomain: "sain-covid-19.firebaseapp.com",
+    databaseURL: "https://sain-covid-19.firebaseio.com",
+    projectId: "sain-covid-19",
+    storageBucket: "sain-covid-19.appspot.com",
+    messagingSenderId: "404509151056",
+    appId: "1:404509151056:web:a3e8dc94334ca50efb6655",
+    measurementId: "G-0Y255H054N"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 // firebase.analytics();
 console.log("Done");
 
@@ -21,7 +21,7 @@ var OSMPICKER = (function(){
     var circle;
     var marker_array = [];
     var text_array = [];
-
+    
 	app.initmappicker = function(lat, lon, r, option){
 		try{
 			map = new L.Map('locationPicker');
@@ -144,9 +144,17 @@ var OSMPICKER = (function(){
 
     $("#submit_button").on('click', submitFunc);
     function submitFunc(){
-        // console.log("SENT", firebase);
-        // var ref = firebase.database().ref();
-        // ref('locations').set({'test':1});
+        const db = firebase.firestore();
+        // db.collection('locations').doc().set({"a":1});
+        var locations = []
+        var sub = {}
+        for(var i=0; i<marker_array.length; i++){
+            var latlon = marker_array[i].getLatLng();
+            // console.log(marker_array[i]._popup._content, locations[i].lat, locations[i].lng);
+            sub[i] = {"loc":marker_array[i]._popup._content, "lat":latlon.lat, "lon":latlon.lng};
+        }
+        db.collection('locations').doc().set(sub);
+        console.log("Submit success");
     };
 
 	function searchLocation(text, callback){
