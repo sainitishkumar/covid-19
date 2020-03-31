@@ -23,8 +23,7 @@ app.get('/osm.js', function(req, res) {
     res.sendFile(path.join(__dirname+'/osm.js'));
 });
 
-let port = process.env.port;
-if(port==null || port==""){
-    port = 8000;
-}
+let port = process.env.PORT || 3000;
+
+console.log("port", port);
 app.listen(port);
