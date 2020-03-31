@@ -34,7 +34,7 @@ var OSMPICKER = (function(){
         map.setView([lat, lon],10);
 		map.addLayer(osm);
 		if(!marker){
-			marker = new L.marker([lat, lon], {draggable:'true'});
+			marker = new L.marker([lat, lon], {draggable:'false'});
 			circle = new L.circle([lat, lon], r, {
 				weight: 2
 			});
