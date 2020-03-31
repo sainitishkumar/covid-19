@@ -21,7 +21,8 @@ var OSMPICKER = (function(){
     var circle;
     var marker_array = [];
     var text_array = [];
-    
+    var date_array = [];
+
 	app.initmappicker = function(lat, lon, r, option){
 		try{
 			map = new L.Map('locationPicker');
@@ -84,14 +85,15 @@ var OSMPICKER = (function(){
                 markerloc = new L.LatLng(item.lat, item.lon);
                 marker = new L.marker(markerloc, {draggable:'true'});
                 marker_array.push(marker);
-                text_array.push(text);
+                text_array.push(text+" "+$("#date").val());
                 circle.setLatLng(marker.getLatLng());
-                marker.bindPopup(text);
+                marker.bindPopup(text+"\n"+$("#date").val());
+                date_array.push($("#date").val());
                 map.addLayer(marker);
                 map.setView(marker.getLatLng());
                 map.addLayer(circle);
                 table_text = "<tr>";
-                table_text += "<td>"+text+"</td>";
+                table_text += "<td>"+text+" "+$("#date").val()+"</td>";
                 table_text += "<td>" + '<button>Delete</button>' + "</td></tr>";
                 $("#table_id").append(table_text);
             }
@@ -115,6 +117,8 @@ var OSMPICKER = (function(){
         }
         var temptext = text_array.splice(num,1);
         var marker = marker_array.splice(num,1);
+        var date = date_array.splice(num,1);
+
         console.log("Removed"+temptext, num);
         // map.removeLayer(marker);
         map.eachLayer(function(marker){
@@ -154,7 +158,7 @@ var OSMPICKER = (function(){
             sub[i] = {"loc":marker_array[i]._popup._content, "lat":latlon.lat, "lon":latlon.lng};
         }
         db.collection('locations').doc().set(sub);
-        console.log("Submit success");
+        alert("Submit success");
     };
 
 	function searchLocation(text, callback){
