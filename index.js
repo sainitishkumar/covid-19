@@ -4,7 +4,7 @@ const path = require('path');
 var process = require('process')
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname+'/osm.html'));
+    res.redirect("/osm.html");
 });
 
 app.get('/osm.html', function(req, res) {
