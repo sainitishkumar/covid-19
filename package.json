@@ -1,0 +1,22 @@
+{
+  "name": "covid-19",
+  "version": "1.0.0",
+  "description": "We can track the locations of covid-19 suspects and positive cases in the community. This is possible if the suspects self report their locations using the web app and other people can visually see it.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sainitishkumar/covid-19.git"
+  },
+  "author": "saiNitish",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sainitishkumar/covid-19/issues"
+  },
+  "homepage": "https://github.com/sainitishkumar/covid-19#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
