@@ -28,8 +28,8 @@ var OSMPICKER = (function(){
 		}catch(e){
 			console.log(e);
 		}
-		var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-		var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+		var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+		var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
 		var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 40});		
         map.setView([lat, lon],10);
 		map.addLayer(osm);
@@ -89,7 +89,7 @@ var OSMPICKER = (function(){
 	};
 
 	function searchLocation(text, callback){
-		var requestUrl = "http://nominatim.openstreetmap.org/search?format=json&q="+text;
+		var requestUrl = "https://nominatim.openstreetmap.org/search?format=json&q="+text;
 		$.ajax({
 			url : requestUrl,
 			type : "GET",
